@@ -3,4 +3,4 @@
 sudo apt update
 
 # Устанввливаем ryby
-apt install -y ruby-full ruby-bundler build-essential
+sudo apt install -y ruby-full ruby-bundler build-essential
