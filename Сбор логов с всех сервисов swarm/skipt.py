@@ -1,9 +1,9 @@
 import paramiko 
 import subprocess
 
-host = 'IP'
-user = 'USER'
-secret = 'PASS'
+host = '***'
+user = '****'
+secret = '****'
 port = 22
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -12,6 +12,7 @@ client.connect(hostname=host, username=user, password=secret, port=port)
 # Выполнение команды
 client.exec_command('mkdir /tmp/fromswarm/')
 subprocess.run(["sshpass", "-p", (secret), "scp", "get_stack_logs.sh", f"{user}@{host}:/tmp/fromswarm/get_stack_logs.sh"])
+client.exec_command('chmod +x get_stack_logs.sh')
 stdin, stdout, stderr = client.exec_command('/tmp/fromswarm/get_stack_logs.sh PMP --since=2m --until=2s')
 while True:
     print(stdout.read().decode(), end='')
